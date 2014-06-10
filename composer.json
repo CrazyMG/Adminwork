@@ -1,0 +1,17 @@
+{
+	"minimum-stability" : "stable",
+	"license" : "MIT",
+	"name" : "Adminwork",
+	"require" : {
+		"slim/slim" : "2.2.*",
+		"j4mie/paris" : "1.4.2",
+		"twig/twig" : "1.15.1",
+		"slim/extras" : "2.0.3",
+		"twitter/bootstrap" : "3.1.1"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"" : "src/lib"
+		}
+	}
+}

@@ -1,0 +1,62 @@
+{% extends 'base.twig' %}
+
+{% block script %}
+	<script type="text/javascript" src="/resources/js/pwdwidget.js"></script>
+	<script type="text/javascript" src="/resources/js/users.js"></script>
+{% endblock %}
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="/resources/css/pwdwidget.css"/>
+{% endblock %}
+
+{% block subtitle %}- Users{% endblock %}
+
+{% block content %}
+	<div>
+		<button id="btn_newUser">New User</button>
+	</div>
+	
+	<div id="newUser_dialog" style="display: none;" >
+		<table class="table">
+			<tr>
+				<td><label for="name">Name:</label></td>
+				<td><input type="text" id="name"/></td>
+			</tr>
+			<tr>
+				<td><label for="surname">Surname:</label></td>
+				<td><input type="text" id="surname"/></td>
+			</tr>
+			<tr>
+				<td><label for="pwd">Password:</label></td>
+				<td><div id="pwdMeterDiv"></div></td>
+				<script  type="text/javascript" >
+					var pwdwidget = new PasswordWidget('pwdMeterDiv','pwd');
+					pwdwidget.MakePWDWidget();
+				</script>
+			</tr>
+			<tr>
+				<td><label for="pwd2">Repeat password:</label></td>
+				<td><input type="password" id="pwd2"/></td>
+			</tr>
+			<tr>
+				<td><label for="email">Email:</label></td>
+				<td><input type="email" id="email"/></td>
+			</tr>
+			<tr>
+				<td><label for="thumbnail">Thumbnail:</label></td>
+				<td><input type="file" id="thumbnail" accept="image/*"></td>
+			</tr>
+			<tr>
+				<td><label for="role">Role:</label></td>
+				<td><select>
+						<option selected="selected" value="user">User</option>
+						<option value="admin">Admin</option>
+						<option value="superadmin">Super Admin</option>				
+					</select></td>
+			</tr>
+			<tr>
+				<td><label for="isActive">Is active user:</label></td>
+				<td><input checked="checked" type="checkbox" id="chk_isActiveUser"></td>
+			</tr>
+		</table>
+	</div>
+{% endblock %}
