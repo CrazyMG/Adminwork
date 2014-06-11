@@ -1,40 +1,36 @@
 .pwdwidgetdiv
 {
-	width:155px;
-}
+	width:155px;}
+
 .pwdfield
 {
-	width:150px;
-}
+	width:150px;}
+
 .pwdopsdiv
 {
 	display: block;
 	float: left;
-	margin-right:6px;	
-}
+	margin-right:6px;}
+
 .pwdopsdiv a
 {
 	font-family : Arial, Helvetica, sans-serif;
-	font-size : 10px; 
-}
+	font-size : 10px;}
 
 .pwdstrengthbar
 {
 	float:right;
 	background:#cccccc;
 	height:4px;
-	margin:0;
-
-}
+	margin:0;}
 
 .pwdstrength
 {
 	float:right; 
 	height:20px;
 	width:70px;
-	margin-top:3px;
-
-}
+	margin-top:3px;}
+	
 .pwdstrengthstr
 {
     float:right;
@@ -42,6 +38,4 @@
 	height:14px;
 	margin-top:0px;
 	font-family : Arial, Helvetica, sans-serif;
-	font-size : 10px; 
-
-}
+	font-size : 10px; }
