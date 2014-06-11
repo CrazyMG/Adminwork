@@ -16,47 +16,57 @@
 	</div>
 	
 	<div id="newUser_dialog" style="display: none;" >
+	<form>
 		<table class="table">
 			<tr>
-				<td><label for="name">Name:</label></td>
-				<td><input type="text" id="name"/></td>
+				<td><label for="txb_name">Name:</label></td>
+				<td>
+				<div id="nameError"></div>
+				<input type="text" id="txb_name"/></td>
 			</tr>
 			<tr>
-				<td><label for="surname">Surname:</label></td>
-				<td><input type="text" id="surname"/></td>
+				<td><label for="txb_surname">Surname:</label></td>
+				<td>
+				<div id="surnameError"></div>
+				<input type="text" id="txb_surname"/></td>
 			</tr>
 			<tr>
-				<td><label for="pwd">Password:</label></td>
-				<td><div id="pwdMeterDiv"></div></td>
+				<td><label for="txb_pwd">Password:</label></td>
+				<td>
+				<div id="pwdError"></div>
+				<div id="pwdMeterDiv"></div></td>
 				<script  type="text/javascript" >
-					var pwdwidget = new PasswordWidget('pwdMeterDiv','pwd');
+					var pwdwidget = new PasswordWidget('pwdMeterDiv','txb_pwd');
 					pwdwidget.MakePWDWidget();
 				</script>
 			</tr>
 			<tr>
-				<td><label for="pwd2">Repeat password:</label></td>
-				<td><input type="password" id="pwd2"/></td>
+				<td><label for="txb_pwd2">Repeat password:</label></td>
+				<td>
+				<div id="pwd2Error"></div>
+				<input type="password" id="txb_pwd2"/></td>
 			</tr>
 			<tr>
-				<td><label for="email">Email:</label></td>
-				<td><input type="email" id="email"/></td>
+				<td><label for="txb_email">Email:</label></td>
+				<td><input type="email" id="txb_email"/></td>
 			</tr>
 			<tr>
 				<td><label for="thumbnail">Thumbnail:</label></td>
 				<td><input type="file" id="thumbnail" accept="image/*"></td>
 			</tr>
 			<tr>
-				<td><label for="role">Role:</label></td>
-				<td><select>
+				<td><label for="sel_role">Role:</label></td>
+				<td><select id="sel_role">
 						<option selected="selected" value="user">User</option>
 						<option value="admin">Admin</option>
 						<option value="superadmin">Super Admin</option>				
 					</select></td>
 			</tr>
 			<tr>
-				<td><label for="isActive">Is active user:</label></td>
+				<td><label for="chk_isActiveUser">Is active user:</label></td>
 				<td><input checked="checked" type="checkbox" id="chk_isActiveUser"></td>
 			</tr>
 		</table>
+	</form>
 	</div>
 {% endblock %}

@@ -6,10 +6,28 @@ require_once './vendor/j4mie/idiorm/idiorm.php';
 require_once './vendor/j4mie/paris/paris.php';
 
 $properties = parse_ini_file('./config/adminwork.ini');
-$dbName = $properties['db.name'];
-$host = $properties['mysql.host'];
-$user = $properties['mysql.user'];
-$password = $properties['mysql.password'];
+
+// Checks for integrity of data from config file.
+try {
+	$dbName = $properties['db.name'];
+}catch(Exception $e){
+	echo $e->getMessage("Database name in your adminwork.ini is invalid.");
+}
+try {
+	$host = $properties['mysql.host'];
+}catch(Exception $e){
+	echo $e->getMessage("Host name in your adminwork.ini is invalid.");
+}
+try {
+	$user = $properties['mysql.user'];
+}catch(Exception $e){
+	echo $e->getMessage("User in your adminwork.ini is invalid.");
+}
+try {
+	$password = $properties['mysql.password'];
+}catch(Exception $e){
+	$password = '';
+}
 
 $link = mysql_connect($host, $user, $password);
 try{
