@@ -4,9 +4,12 @@
 		<meta charset="utf-8">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+		<script src="/vendor/twitter/bootstrap/dist/js/bootstrap.min.js"></script>
 		{% block script %}{% endblock %}
 		
-		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="/vendor/twitter/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/vendor/twitter/bootstrap/dist/css/bootstrap-theme.min.css" />
 		{% block style %}{% endblock %}
 		<title>Adminwork {% block subtitle %}{% endblock %}</title>
 		
@@ -16,6 +19,9 @@
 		<ul>
 			<li><a href="{{ app.urlFor('Users') }}">Users</a></li>
 		</ul>
+	</div>
+	<div id="top">
+		
 	</div>
 	<div id="content">
 		{% block content %}{% endblock %}

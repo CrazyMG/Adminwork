@@ -31,7 +31,7 @@ try {
 
 $link = mysql_connect($host, $user, $password);
 try{
-mysql_query("create database if not exists $dbName", $link);
+	mysql_query("create database if not exists $dbName", $link);
 }catch(Exception $e){
 	$e->getMessage();
 }
@@ -43,6 +43,7 @@ ORM::configure('logging', true);
 
 try{
 	$db = ORM::get_db();
+	
 
 }catch(Exception $e){
 	echo $e->getMessage();
@@ -58,8 +59,8 @@ $app = new \Slim\Slim(array(
 	'view' => $twigView
 ));
 
-require_once './src/createDatabase.php';
-require './controller/router.php';
+require_once 'src/createDatabase.php';
+require 'src/controller/router.php';
 
 $app->run();
 

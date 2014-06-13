@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+body{
+	background-image:url(./images/pattern_b10.png);
+	background-color:#ccc;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	padding-top:13%;}
+
+.log-area{
+	width:400px;
+	height:300px;
+	margin:auto;
+	-webkit-box-shadow: 2px 2px 3px 1px #000;
+	box-shadow: 2px 2px 3px 1px #000;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background-color:#FFF;
+	background-image:url(./images/pattern_b10.png)}
+	
+.tit-area{
+	height:35px;
+	padding:8px;
+	background-color:#0C6;
+	background-image:url(./images/pattern_b10.png);
+	text-align:center;
+	color:#FFF;
+	font-size:24px;
+	font-weight:bold;
+	overflow:hidden;
+	-webkit-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0;
+	}
+	
+.data-area{
+	color:#000;
+	padding:40px 20px 20px 20px;
+	font-weight:bold;
+	font-size:18px;}
+	
+.data-area input{
+	border-radius: 8px;
+    height: 30px;
+    margin-left: 5px;
+    padding-left: 5px;
+    width: 240px;}
+	
+#user{
+	margin-left:28px;}
+	
+#btn{
+	width:70px;
+	background-color:#0C3;
+	background-image:url(./images/pattern_b10.png);
+	color:#FFF;
+	font-weight:bold;
+	left:39.5%;
+	position:relative;
+	top: 40px;}

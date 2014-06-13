@@ -1,7 +1,7 @@
 {% extends 'base.twig' %}
 
-{% block script %}
-	<script type="text/javascript" src="/resources/js/pwdwidget.js"></script>
+{% block script %}	
+	<script type="text/javascript" src="validate.min.js"></script>
 	<script type="text/javascript" src="/resources/js/users.js"></script>
 {% endblock %}
 {% block style %}
@@ -16,39 +16,27 @@
 	</div>
 	
 	<div id="newUser_dialog" style="display: none;" >
-	<form>
+	<form id="createUserForm" action="">
 		<table class="table">
 			<tr>
 				<td><label for="txb_name">Name:</label></td>
-				<td>
-				<div id="nameError"></div>
-				<input type="text" id="txb_name"/></td>
+				<td><input type="text" id="txb_name" name="name" /></td>
 			</tr>
 			<tr>
 				<td><label for="txb_surname">Surname:</label></td>
-				<td>
-				<div id="surnameError"></div>
-				<input type="text" id="txb_surname"/></td>
+				<td><input type="text" id="txb_surname" name="surname"/></td>
 			</tr>
 			<tr>
 				<td><label for="txb_pwd">Password:</label></td>
-				<td>
-				<div id="pwdError"></div>
-				<div id="pwdMeterDiv"></div></td>
-				<script  type="text/javascript" >
-					var pwdwidget = new PasswordWidget('pwdMeterDiv','txb_pwd');
-					pwdwidget.MakePWDWidget();
-				</script>
+				<td><input type="password" id="txb_pwd" name="pwd"/></div></td>
 			</tr>
 			<tr>
 				<td><label for="txb_pwd2">Repeat password:</label></td>
-				<td>
-				<div id="pwd2Error"></div>
-				<input type="password" id="txb_pwd2"/></td>
+				<td><input type="password" id="txb_pwd2" name="pwd2"/></td>
 			</tr>
 			<tr>
 				<td><label for="txb_email">Email:</label></td>
-				<td><input type="email" id="txb_email"/></td>
+				<td><input type="email" id="txb_email" name="email"/></td>
 			</tr>
 			<tr>
 				<td><label for="thumbnail">Thumbnail:</label></td>

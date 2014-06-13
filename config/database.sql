@@ -5,7 +5,7 @@
  * Create Client table
  */
 
-create table if not exists Client(
+create table if not exists clients(
 	clientId integer primary key auto_increment,
 	organization varchar(50) not null,
 	description varchar(255),
@@ -15,7 +15,7 @@ create table if not exists Client(
 /**
 * Create User table
 */
-create table if not exists User(
+create table if not exists users(
 	userId integer primary key auto_increment,
 	name varchar(50) not null,
 	surname varchar(50) not null,
@@ -30,37 +30,28 @@ create table if not exists User(
 /**
  * Create Message table
  */
-create table if not exists Message(
-	messageId integer primary key auto_increment,
+create table if not exists posts(
+	postId integer primary key auto_increment,
 	senderId integer not null,
 	receiverId integer not null,
 	content text not null,
 	dateSend datetime not null, 
-	FOREIGN KEY (senderId) REFERENCES User(userId)
+	FOREIGN KEY (senderId) REFERENCES users(userId)
 		ON DELETE NO ACTION 
 		ON UPDATE NO ACTION,
-	FOREIGN KEY (receiverId) REFERENCES User(userId)
+	FOREIGN KEY (receiverId) REFERENCES users(userId)
 		ON DELETE NO ACTION 
 		ON UPDATE NO ACTION
 );
 		
 /**
- * Create Absence table
+ * Create Absences table
  */
-create table if not exists Absence(
-	absenceId integer primary key auto_increment,
-	reason varchar(50) not null,
-	note varchar(200),
-	userId integer not null,
-	FOREIGN KEY (userId) REFERENCES User(userId)
-		ON DELETE NO ACTION 
-		ON UPDATE NO ACTION
-);
 
 /**
  * Create Contact table
  */		
-create table if not exists Contact(
+create table if not exists contacts(
 	contactId integer primary key auto_increment,
 	referent varchar(50) not null,
 	telephone varchar(50),
@@ -73,10 +64,10 @@ create table if not exists Contact(
 	address varchar(255),
 	clientId integer,
 	userId integer,
-	FOREIGN KEY (clientId) REFERENCES Client(clientId)
+	FOREIGN KEY (clientId) REFERENCES clients(clientId)
 		ON DELETE NO ACTION 
 		ON UPDATE NO ACTION,
-	FOREIGN KEY (userId) REFERENCES User(userId)
+	FOREIGN KEY (userId) REFERENCES users(userId)
 		ON DELETE NO ACTION 
 		ON UPDATE NO ACTION
 );
@@ -84,7 +75,7 @@ create table if not exists Contact(
 /**
  * Create Project table
  */
-create table if not exists Project(
+create table if not exists projects(
 	projectId integer primary key auto_increment,
 	title varchar(100) not null,
 	description text,
@@ -94,7 +85,7 @@ create table if not exists Project(
 	url varchar(255),
 	note varchar(255),
 	clientId integer not null,
-	FOREIGN KEY (clientId) REFERENCES Client(clientId)
+	FOREIGN KEY (clientId) REFERENCES clients(clientId)
 		ON DELETE NO ACTION /* 'No action' is a choice made to preserve data, you can think to set it 'CASCADE' */
 		ON UPDATE NO ACTION
 );
@@ -102,12 +93,12 @@ create table if not exists Project(
 /**
  * Create Task table
  */
-create table if not exists Task(
+create table if not exists tasks(
 	taskId integer primary key auto_increment,
 	title varchar(50) not null,
 	status varchar(30) not null,
 	projectId integer not null,
-	FOREIGN KEY (projectId) REFERENCES Project(projectId)
+	FOREIGN KEY (projectId) REFERENCES projects(projectId)
 		ON DELETE CASCADE 
 		ON UPDATE NO ACTION
 );
@@ -115,17 +106,17 @@ create table if not exists Task(
 /**
  * Create Activity table 
  */
-create table if not exists Activity(
+create table if not exists activities(
 	activityId integer primary key auto_increment,
 	startTime datetime not null,
 	endTime datetime not null,
 	log_text varchar(200),
 	userId integer not null,
 	taskId integer not null,
-	FOREIGN KEY (userId) REFERENCES User(userId)
+	FOREIGN KEY (userId) REFERENCES users(userId)
 		ON DELETE NO ACTION 
 		ON UPDATE NO ACTION,
-	FOREIGN KEY (taskId) REFERENCES Task(taskId)
+	FOREIGN KEY (taskId) REFERENCES tasks(taskId)
 		ON DELETE CASCADE 
 		ON UPDATE NO ACTION
 );
@@ -133,16 +124,16 @@ create table if not exists Activity(
 /**
  * Create Assignment table
  */
-create table if not exists Assignment(
+create table if not exists assignments(
 	assignmentId integer primary key auto_increment,
 	userId integer not null,
 	projectId integer not null,
 	rate double not null,
 	isLeader boolean not null default false,
-	FOREIGN KEY (userId) REFERENCES User(userId)
+	FOREIGN KEY (userId) REFERENCES users(userId)
 		ON DELETE NO ACTION 
 		ON UPDATE NO ACTION,
-	FOREIGN KEY (projectId) REFERENCES Project(projectId)
+	FOREIGN KEY (projectId) REFERENCES projects(projectId)
 		ON DELETE CASCADE 
 		ON UPDATE NO ACTION
 )

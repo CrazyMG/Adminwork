@@ -7,11 +7,15 @@
 		"j4mie/paris" : "1.4.2",
 		"twig/twig" : "1.15.1",
 		"slim/extras" : "2.0.3",
-		"twitter/bootstrap" : "3.1.1"
+		"twitter/bootstrap" : "3.1.1",
+		"nategood/httpful" : "0.2.13"
 	},
 	"autoload" : {
 		"psr-0" : {
 			"" : "src/lib"
-		}
+		},
+		"classmap" : [
+			"src/"
+		]
 	}
 }

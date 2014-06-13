@@ -10,5 +10,6 @@ return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Slim\\Extras' => array($vendorDir . '/slim/extras'),
     'Slim' => array($vendorDir . '/slim/slim'),
+    'Httpful' => array($vendorDir . '/nategood/httpful/src'),
     '' => array($baseDir . '/src/lib'),
 );

@@ -12,4 +12,6 @@ return array(
     'Model' => $vendorDir . '/j4mie/paris/paris.php',
     'ORM' => $vendorDir . '/j4mie/idiorm/idiorm.php',
     'ORMWrapper' => $vendorDir . '/j4mie/paris/paris.php',
+    'QueryReader' => $baseDir . '/src/lib/QueryReader.php',
+    'Users' => $baseDir . '/src/models/user.php',
 );

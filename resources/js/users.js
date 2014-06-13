@@ -1,5 +1,8 @@
 $(document).ready(function(){
-	
+
+	/**
+	 * Handling of the button "Create User".
+	 */
 	$('#btn_newUser').on('click', function(){
 		$('#newUser_dialog').dialog({
 			title: 'Create new user',
@@ -10,12 +13,23 @@ $(document).ready(function(){
 			modal : true,
 			buttons:{
 				"Create": function(){
+					var isActive = false;
+					if($('#chk_isActiveUser').prop('checked')) isActive=1;
+					var data = {
+							name: $('#txb_name').val(),
+							surname: $('#txb_surname').val(),
+							password: $('#txb_pwd').val(),
+							email: $('#txb_email').val(),
+							thumbnail: $('#thumbnail').val(),
+							role: $('#sel_role').val(),
+							isActive: isActive
+						};
 					$.ajax({
-						var data = {
-								action : "createUser",
-								name : $('#tbx_name').val(),
-								surname : $('#tbx_surname').val(),
-								password :$('#tbx_pwd_id').val(),
+						type: "POST",
+						url: "/users/add/",
+						data: data,
+						success: function(response){
+							console.log(response);
 						}
 					});
 				},
@@ -23,48 +37,5 @@ $(document).ready(function(){
 				}
 			}
 		});
-	});
-	
-	$('#txb_name').on('blur', function(){
-		$('#nameError').html('');
-		var name = $(this).val();
-		var nameRegex = "^[a-zA-Z'òèé -]+$";
-		if(name == ''){
-			$('#nameError').html('The name is required.').addClass('error');
-		}else if(name.match(nameRegex) == null){
-			$('#nameError').html('The name must consist of letters').addClass('error');
-		}else{
-			$('#nameError').html('');
-		}
-	});
-	
-	$('#txb_surname').on('blur', function(){
-		$('#surnameError').html('');
-		var surname = $(this).val();
-		var surnameRegex = "^[a-zA-Z'òèé -]+$";
-		if(surname == ''){
-			$('#surnameError').html('The surname is required.').addClass('error');
-		}else if(surname.match(surnameRegex) == null){
-			$('#surnameError').html('The surname must consist of letters').addClass('error');
-		}else{
-			$('#surnameError').html('');
-		}
-	});
-	
-	$('#txb_pwd_id').on('blur', function(){
-		var pwd = $(this).val();
-		if(pwd.length < 8){
-			$('#pwdError').html('The password must be almost 8 characters.').addClass('error');
-		}else{
-			$('#pwdError').html('');
-		}
-	});
-	
-	$('#txb_pwd2').on('blur', function(){
-		if($('#txb_pwd_id').val() != $(this).val()){
-			$('#pwd2Error').html('The passwords mismatch.').addClass('error');
-		}else{
-			$('#pwd2Error').html('');
-		}
 	});
 });
