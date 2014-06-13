@@ -13,8 +13,8 @@ The great feature of "Adminwork" is the extraordinary series of graphical tools 
 
  - [Apache Web Server](http://httpd.apache.org/ "Apache")
  - [MySQL](http://www.mysql.it/ "MySQL")
- - Curl
- - Composer
+ - [cURL](http://curl.haxx.se/ "cURL")
+ - [Composer](https://getcomposer.org/ "Composer")
 
 ## Installation
 
