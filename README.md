@@ -11,8 +11,8 @@ The great feature of "Adminwork" is the extraordinary series of graphical tools 
 
 ## Requirements
 
- - Apache
- - MySQL
+ - [Apache Web Server](http://httpd.apache.org/ "Apache")
+ - [MySQL](http://www.mysql.it/ "MySQL")
  - Curl
  - Composer
 
