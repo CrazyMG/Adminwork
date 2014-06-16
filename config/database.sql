@@ -19,7 +19,7 @@ create table if not exists users(
 	userId integer primary key auto_increment,
 	name varchar(50) not null,
 	surname varchar(50) not null,
-	email varchar(50) not null,
+	email varchar(50) not null UNIQUE,
 	password varchar(100) not null, /* MD5 encripted*/
 	role varchar(50) not null,
 	isActive boolean not null,

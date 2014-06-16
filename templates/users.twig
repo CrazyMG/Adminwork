@@ -1,11 +1,11 @@
 {% extends 'base.twig' %}
 
 {% block script %}	
-	<script type="text/javascript" src="validate.min.js"></script>
+	<script type="text/javascript" src="/resources/js/bootstrapValidator.min.js"></script>
 	<script type="text/javascript" src="/resources/js/users.js"></script>
 {% endblock %}
 {% block style %}
-	<link rel="stylesheet" type="text/css" href="/resources/css/pwdwidget.css"/>
+	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrapValidator.css"/>
 {% endblock %}
 
 {% block subtitle %}- Users{% endblock %}
@@ -15,46 +15,92 @@
 		<button id="btn_newUser">New User</button>
 	</div>
 	
-	<div id="newUser_dialog" style="display: none;" >
-	<form id="createUserForm" action="">
-		<table class="table">
-			<tr>
-				<td><label for="txb_name">Name:</label></td>
-				<td><input type="text" id="txb_name" name="name" /></td>
-			</tr>
-			<tr>
-				<td><label for="txb_surname">Surname:</label></td>
-				<td><input type="text" id="txb_surname" name="surname"/></td>
-			</tr>
-			<tr>
-				<td><label for="txb_pwd">Password:</label></td>
-				<td><input type="password" id="txb_pwd" name="pwd"/></div></td>
-			</tr>
-			<tr>
-				<td><label for="txb_pwd2">Repeat password:</label></td>
-				<td><input type="password" id="txb_pwd2" name="pwd2"/></td>
-			</tr>
-			<tr>
-				<td><label for="txb_email">Email:</label></td>
-				<td><input type="email" id="txb_email" name="email"/></td>
-			</tr>
-			<tr>
-				<td><label for="thumbnail">Thumbnail:</label></td>
-				<td><input type="file" id="thumbnail" accept="image/*"></td>
-			</tr>
-			<tr>
-				<td><label for="sel_role">Role:</label></td>
-				<td><select id="sel_role">
-						<option selected="selected" value="user">User</option>
-						<option value="admin">Admin</option>
-						<option value="superadmin">Super Admin</option>				
-					</select></td>
-			</tr>
-			<tr>
-				<td><label for="chk_isActiveUser">Is active user:</label></td>
-				<td><input checked="checked" type="checkbox" id="chk_isActiveUser"></td>
-			</tr>
+	{% if users %}
+		<table border="1px">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Surname</th>
+					<th>Email</th>
+					<th>Role</th>
+					<th>Active</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr id="row_{{ loop.index0 }}">
+						<td id="col_userId_{{ loop.index0 }}">{{ user.userId }}</td>
+						<td id="col_name_{{ loop.index0 }}">{{ user.name }}</td>
+						<td id="col_surname_{{ loop.index0 }}">{{ user.surname }}</td>
+						<td id="col_email_{{ loop.index0 }}">{{ user.email }}</td>
+						<td id="col_role_{{ loop.index0 }}">{{ user.role }}</td>
+						<td id="col_isActive_{{ loop.index0 }}">{{ user.isActive }}</td>
+						<td><button id="btn_edit_{{ loop.index0 }}">Edit</button></td>
+						<td><button id="btn_remove_{{ loop.index0 }}">Remove</button></td>
+					</tr>
+				{% endfor %}
+			</tbody>
 		</table>
+	{% else %}
+		Nessun cliente trovato.
+	{% endif %}
+	
+<div id="newUser_dialog" style="display: none;" >
+	<form>
+		<div class="form-group">
+			<label>Name:</label>
+			<input type="text" class="form-control" id="txb_name" name="name" placeholder="Name"/>
+		</div>
+		
+		<div class="form-group">
+			<label>Surname:</label>
+			<input type="text" class="form-control" id="txb_surname" name="surname" placeholder="Surname"/>
+		</div>
+		
+		<div class="form-group">
+			<label>Password:</label>
+			<input type="password" class="form-control" id="txb_pwd" name="pwd" placeholder="Password"/>
+		</div>
+		
+		<div class="form-group">
+			<label>Repeat password:</label>
+			<input type="password" class="form-control" id="txb_pwd2" name="pwd2" placeholder="Repeat your password"/>
+		</div>
+		
+		<div class="form-group">
+			<label>Email:</label>
+			<input type="email" class="form-control" id="txb_email" name="email" placeholder="Email address"/>
+		</div>
+		
+		<div class="form-group">
+			<label>Thumbnail:</label>
+			<input type="file" class="form-control" id="thumbnail" accept="image">
+		</div>
+		
+		<div class="form-group">
+			<label>Role:</label>
+			<select id="sel_role" class="form-control">
+				<option selected="selected" value="user">User</option>
+				<option value="admin">Admin</option>
+				<option value="superadmin">Super Admin</option>				
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label>Is active user:</label>
+			<input checked="checked" type="checkbox" class="form-control" id="chk_isActiveUser">
+		</div>
+		
+		<div>
+			<button type="submit" class="btn btn-primary">Create User</button>
+			<button type="reset" class="btn btn-danger">Reset</button>
+		</div>
 	</form>
-	</div>
+</div>
+
+<div id="editUser_dialog" style="display: none;" >
+</div>
 {% endblock %}

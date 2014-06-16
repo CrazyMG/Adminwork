@@ -1,8 +1,8 @@
 <?php
 
-require 'vendor/autoload.php';
+require './../vendor/autoload.php';
 
-$properties = parse_ini_file('./config/adminwork.ini');
+$properties = parse_ini_file('./../config/adminwork.ini');
 
 // Checks for integrity of data from config file.
 try {
@@ -40,27 +40,29 @@ ORM::configure('logging', true);
 
 try{
 	$db = ORM::get_db();
-	
+
 
 }catch(Exception $e){
 	echo $e->getMessage();
 }
 
-//Istance Twig and enable the extensions for debugging
-$twigView = new \Slim\Extras\Views\Twig();
-$twigView::$twigExtensions = array(new Twig_Extension_Debug());
-$twigView::$twigOptions = array('debug' => true);
+$isAvailable = false;
+switch ($_POST['type']) {
+	case 'email': {
+		$email = $_POST['email'];
+		$userDB = Model::factory('Users')->where('email', $email)->findOne();
 
-// Istance of application
-$app = new \Slim\Slim(array(
-	'view' => $twigView
+		if(!$userDB instanceof Users){
+			$isAvailable = true; // or false
+		}
+		break;
+	}
+	default: {
+		break;
+	}
+}
+
+//// Finally, return a JSON
+echo json_encode(array(
+    'valid' => $isAvailable,
 ));
-$app->notFound(function () use ($app) {
-	$app->render('error404.twig');
-});
-
-require_once 'src/createDatabase.php';
-require 'src/controller/router.php';
-
-$app->run();
-

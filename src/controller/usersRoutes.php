@@ -2,12 +2,12 @@
 
 $app->get('/users/', function () use($app){
 	$app->render('users.twig', array(
-			'app' => $app
+			'app' => $app,
+			'users' => Model::factory("Users")->find_many()
 	));
 })->name("Users");
 
 $app->post('/users/add/', function () use($app){
-	
 	
 	$request = $app->request();
 	$postVars = $request->post();
