@@ -2,11 +2,6 @@
 
 $app->post('/api/users/add/', function () use($app){
 	
-	// Finally, return a JSON
-	echo json_encode(array(
-			'valid' => $isAvailable,
-	));
-	
 	$json = $app->request()->getBody();
 	$user = json_decode($json);
 	
