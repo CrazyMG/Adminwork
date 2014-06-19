@@ -25,6 +25,8 @@
 					<th>Email</th>
 					<th>Role</th>
 					<th>Active</th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -36,12 +38,14 @@
 						<td id="col_email_{{ loop.index0 }}">{{ user.email }}</td>
 						<td id="col_role_{{ loop.index0 }}">{{ user.role }}</td>
 						<td id="col_isActive_{{ loop.index0 }}">{{ user.isActive }}</td>
+						<td><button>Edit</button></td>
+						<td><button>Remove</button></td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	{% else %}
-		Nessun cliente trovato.
+		No user found.
 	{% endif %}
 	
 <div id="newUser_dialog" style="display: none;" >
