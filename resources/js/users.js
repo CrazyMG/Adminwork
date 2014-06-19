@@ -68,7 +68,7 @@ $(document).ready(function(){
             		},
             		remote: {
                         message: 'The email is not available',
-                        url: '/src/ajaxManager.php',
+                        url: './../src/ajaxManager.php',
                         data: {
                             type: 'email'
                         }
@@ -105,7 +105,7 @@ $(document).ready(function(){
 						};
 					$.ajax({
 						type: "POST",
-						url: "/users/add/",
+						url: "./../users/add/",
 						data: data,
 						success: function(response){
 							console.log(response);
