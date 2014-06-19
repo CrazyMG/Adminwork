@@ -28,7 +28,7 @@ try {
 
 $link = mysql_connect($host, $user, $password);
 try{
-	mysql_query("create database if not exists $dbName", $link);
+	mysql_query("create database if not exists $dbName CHARACTER SET utf8 COLLATE utf8_general_ci", $link);
 }catch(Exception $e){
 	$e->getMessage();
 }
