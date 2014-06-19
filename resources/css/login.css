@@ -3,7 +3,7 @@
 /* CSS Document */
 
 body{
-	background-image:url(./images/pattern_b10.png);
+	background-image:url(../images/pattern_b10.png);
 	background-color:#ccc;
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	padding-top:13%;}
@@ -17,13 +17,13 @@ body{
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 	background-color:#FFF;
-	background-image:url(./images/pattern_b10.png)}
+	background-image:url(../images/pattern_b10.png)}
 	
 .tit-area{
 	height:35px;
 	padding:8px;
 	background-color:#0C6;
-	background-image:url(./images/pattern_b10.png);
+	background-image:url(../images/pattern_b10.png);
 	text-align:center;
 	color:#FFF;
 	font-size:24px;
@@ -52,7 +52,7 @@ body{
 #btn{
 	width:70px;
 	background-color:#0C3;
-	background-image:url(./images/pattern_b10.png);
+	background-image:url(../images/pattern_b10.png);
 	color:#FFF;
 	font-weight:bold;
 	left:39.5%;

@@ -7,14 +7,8 @@ $app->get('/', function () use($app){
 	));
 })->name("HomePage");
 
-
-$app->get('/login/', function () use($app){
-	$app->render('login.twig', array(
-			'app' => $app
-	));
-})->name("Login");
-
-
  require './src/api/api.php';
+ 
+ require './src/controller/loginRoutes.php';
  
  require './src/controller/usersRoutes.php';

@@ -2,6 +2,28 @@ $(document).ready(function(){
 
 	$('#newUser_dialog').bootstrapValidator({
 		message: 'This value is not valid',
+		submitHandler: function(validator, form, submitButton) {
+			var isActive = false;
+			if($('#chk_isActiveUser').prop('checked')) isActive=1;
+			var data = {
+					name: $('#txb_name').val(),
+					surname: $('#txb_surname').val(),
+					password: $('#txb_pwd').val(),
+					email: $('#txb_email').val(),
+					thumbnail: $('#thumbnail').val(),
+					role: $('#sel_role').val(),
+					isActive: isActive
+				};
+			$.ajax({
+				type: "POST",
+				url: "/users/add/",
+				data: data,
+				success: function(response){
+					console.log(response);
+					location.reload();
+				}
+			});
+		},
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -68,7 +90,7 @@ $(document).ready(function(){
             		},
             		remote: {
                         message: 'The email is not available',
-                        url: './../src/ajaxManager.php',
+                        url: '/src/ajaxManager.php',
                         data: {
                             type: 'email'
                         }
@@ -77,7 +99,6 @@ $(document).ready(function(){
             }
         }
 	});
-	
 	
 	/**
 	 * Handling of the button "Create User".
@@ -89,46 +110,7 @@ $(document).ready(function(){
 			width: 'auto',
 			draggable: false,
 			resizable: false,
-			modal : true,
-			buttons:{
-				"Create": function(){
-					var isActive = false;
-					if($('#chk_isActiveUser').prop('checked')) isActive=1;
-					var data = {
-							name: $('#txb_name').val(),
-							surname: $('#txb_surname').val(),
-							password: $('#txb_pwd').val(),
-							email: $('#txb_email').val(),
-							thumbnail: $('#thumbnail').val(),
-							role: $('#sel_role').val(),
-							isActive: isActive
-						};
-					$.ajax({
-						type: "POST",
-						url: "./../users/add/",
-						data: data,
-						success: function(response){
-							console.log(response);
-						}
-					});
-				},
-				"Cancel": function(){
-				}
-			}
+			modal : true
 		});
 	});
-	
-//	/**
-//	 * Handling of the button "Edit".
-//	 */
-//	$('button[id^=btn_edit]').on('click', function(){
-//		$('#editUser_dialog').dialog({
-//			title: 'Create new user',
-//			height: 'auto',
-//			width: 'auto',
-//			draggable: false,
-//			resizable: false,
-//			modal : true
-//		});
-//	});
 });
