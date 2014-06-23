@@ -1547,6 +1547,7 @@ td.beauty-hover {
 }
 .ui-widget {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  top: 65px !important;
 }
 .jqstooltip {
   -webkit-box-sizing: content-box;
