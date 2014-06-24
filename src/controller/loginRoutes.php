@@ -23,7 +23,7 @@ $app->post('/login/check/', function() use($app){
 
 	$body = $response->body;
 	$resp = json_decode($body);
-	var_dump($resp);
+	
 	if(property_exists($resp, "error")){
 		session_destroy();
 		$app->redirect($app->urlFor("Login"));
@@ -32,7 +32,7 @@ $app->post('/login/check/', function() use($app){
 		$_SESSION['userFirstname'] = $resp->name;
 		$_SESSION['userLastname'] = $resp->surname;
 		$_SESSION['userThumbnail'] = $resp->thumbnail;
-		$isPathTo = false;
+		
 		var_dump($_SESSION);
 		if(!array_key_exists('pathTo', $_SESSION)){
 			$_SESSION['pathTo'] = "/";

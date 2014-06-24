@@ -2,6 +2,7 @@
 
 //Home page
 $app->get('/', function () use($app){
+	$app->applyHook('hook.auth', "/");
 	$app->render('base.twig', array(
 			'app' => $app
 	));

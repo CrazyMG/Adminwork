@@ -21,7 +21,7 @@ $app->post('/api/login', function () use($app){
 				   "thumbnail": "'.$userDB->thumbnail.'"}');
 		}else{
 			session_destroy();
-			exit('{"success": "false"}');
+			exit('{"error": "false"}');
 		}
 	}catch(Exception $e){
 		exit('{"error": "'.$e->getMessage().'"}');
