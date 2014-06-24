@@ -24,7 +24,7 @@ create table if not exists users(
 	role varchar(50) not null,
 	isActive boolean not null,
 	avgRate double,
-	thumbnail BLOB
+	thumbnail varchar(150)
 );
 
 /**

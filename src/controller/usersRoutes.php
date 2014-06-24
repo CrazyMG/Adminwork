@@ -1,6 +1,7 @@
 <?php
-
+session_start();
 $app->get('/users/', function () use($app){
+	$app->applyHook('hook.auth', "/users/");
 	$app->render('users.twig', array(
 			'app' => $app,
 			'users' => Model::factory("Users")->find_many()
@@ -23,7 +24,6 @@ $app->post('/users/add/', function () use($app){
 	->send();                                   // and finally, fire that thing off!
 		
 	$body = $response->body;
-	var_dump($body);
 	$resp = json_decode($body);
 	
 // 	if(property_exists($resp, "errore")){

@@ -11,4 +11,6 @@ $app->get('/', function () use($app){
  
  require './src/controller/loginRoutes.php';
  
+ require './src/controller/logoutRoutes.php';
+ 
  require './src/controller/usersRoutes.php';

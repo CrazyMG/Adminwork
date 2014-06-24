@@ -14,9 +14,11 @@
 	
 	<div class="tit-area">Login</div>
     <div class="data-area">
-    	&nbsp;&nbsp;Email <input id="user" name="" type="email" placeholder="Your email..." /><br /><br />
-        Password <input name="" type="password" value="" placeholder="Your password..."/>
-        <input id="btn" name="Login" type="button" value="Login" />
+    	<form action="{{ app.urlFor("CheckLogin") }}" method="POST">
+    		&nbsp;&nbsp;Email <input id="user" name="email" type="email" placeholder="Your email..." /><br /><br />
+        	Password <input name="password" type="password" value="" placeholder="Your password..."/>
+        	<input id="btn" name="Login" type="submit" value="Login" />
+        </form>
     </div>
 
 </div>

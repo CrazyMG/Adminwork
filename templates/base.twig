@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>Adminwork {% block subtitle %}{% endblock %}</title>
 		<meta name="description" content="description">
-		<meta name="author" content="DevOOPS">
+		<meta name="author" content="CrazyMG">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<script src="./../resources/js/jquery-1.11.1.min.js"></script>
@@ -53,6 +53,7 @@
 	</div>
 </div>
 <header class="navbar">
+{% set routeName = app.router().getCurrentRoute().getName()|lower %}
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
@@ -97,7 +98,7 @@
 									<i class="fa fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right">
 										<span class="welcome">Welcome,</span>
-										<span>Jane Devoops</span>
+										<span>{{ session.userFirstname }} {{ session.userLastname }}</span>
 									</div>
 								</a>
 								<ul class="dropdown-menu">
@@ -132,7 +133,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="{{ app.urlFor("Logout") }}">
 											<i class="fa fa-power-off"></i>
 											<span class="hidden-sm text">Logout</span>
 										</a>
@@ -212,8 +213,8 @@
 						 <span class="hidden-xs">Pages</span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="./templates/ajax/page_login.html">Login</a></li>
-						<li><a href="./templates/ajax/page_register.html">Register</a></li>
+						<li><a href="#">Login</a></li>
+						<li><a href="#">Register</a></li>
 						<li><a id="locked-screen" class="submenu" href="#">Locked Screen</a></li>
 						<li><a class="ajax-link" href="#">Contacts</a></li>
 						<li><a class="ajax-link" href="#">Feed</a></li>
@@ -246,7 +247,11 @@
 					</ul>
 				</li>
 				<li>
-					 <a  href="{{ app.urlFor("Users")}}">
+					{% if routeName ==  'users' %}
+					 <a class="active-parent active" href="{{ app.urlFor("Users")}}">
+					{% else %}
+					<a  href="{{ app.urlFor("Users")}}">
+					{% endif %}
 						 <i class="fa fa-font"></i>
 						 <span class="hidden-xs">Users</span>
 					</a>

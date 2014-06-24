@@ -55,12 +55,23 @@ $twigView::$twigOptions = array('debug' => true);
 $app = new \Slim\Slim(array(
 	'view' => $twigView
 ));
+
+$app->hook('hook.auth', function ($pathTo) use ($app){
+	if(!isset($pathTo)){
+		$_SESSION['pathTo'] = $app->urlFor("HomePage");
+	}
+	$_SESSION['pathTo'] = $pathTo;
+	require './src/auth.php';
+});
+
+
 $app->notFound(function () use ($app) {
 	$app->render('error404.twig');
 });
 
 require_once 'src/createDatabase.php';
 require 'src/controller/router.php';
-
+$twig = $app->view()->getEnvironment();
+$twig->addGlobal('session', $_SESSION);
 $app->run();
 

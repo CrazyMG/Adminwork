@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 $app->get('/login/', function () use($app){
 	$app->render('login.twig', array(
 			'app' => $app
@@ -8,23 +9,35 @@ $app->get('/login/', function () use($app){
 
 $app->post('/login/check/', function() use($app){
 	$request = $app->request();
-	$email = $request->post('email');
-	$pass = $request->post('password');
-	
-	
-// 	array_walk_recursive($postVars, function(&$value){
-// 		$value = utf8_encode($value);
-// 	});
+	$postVars = $request->post();
+	$url = $request->getUrl() . $app->urlFor("API_Login");
 
-	$checkLogin = false;
-	$userDB = Model::factory('Users')->where('email', $email)->where('password', md5($pass))->findOne();
-	if($userDB instanceof Users){
-			$checkLogin = true;
-	}
+	array_walk_recursive($postVars, function(&$value){
+		$value = utf8_encode($value);
+	});
 	
-	if($checkLogin == false){
+	$response = \Httpful\Request::post($url)    // Build a POST request...
+	->sendsJson()                               // tell it we're sending (Content-Type) JSON...
+	->body(json_encode($postVars))             	// attach a body/payload...
+	->send();                                   // and finally, fire that thing off!
+
+	$body = $response->body;
+	$resp = json_decode($body);
+	var_dump($resp);
+	if(property_exists($resp, "error")){
+		session_destroy();
 		$app->redirect($app->urlFor("Login"));
 	}else{
-		$app->redirect($app->urlFor("HomePage"));
+		$_SESSION['user_role'] = $resp->role;
+		$_SESSION['userFirstname'] = $resp->name;
+		$_SESSION['userLastname'] = $resp->surname;
+		$_SESSION['userThumbnail'] = $resp->thumbnail;
+		$isPathTo = false;
+		var_dump($_SESSION);
+		if(!array_key_exists('pathTo', $_SESSION)){
+			$_SESSION['pathTo'] = "/";
+		}
+		var_dump($_SESSION);
+		$app->redirect($_SESSION['pathTo']);
 	}
 })->name("CheckLogin");
