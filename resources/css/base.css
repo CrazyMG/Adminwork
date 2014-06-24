@@ -25,16 +25,21 @@ h1, .h1, h2, .h2, h3, .h3 {
   display: block;
   font-size: 20px;
   line-height: 50px;
-  background: url(./../images/logo.png) right 42px no-repeat;
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;
-}
+  }
+
 #logo a:hover {
   background-position: right 25px;
   text-decoration: none;
 }
+
+#logo img{
+	margin-left:3%;}
+
+@media (max-width: 768px) {
+	.img-respo{
+		width:41px;;}
+	}
+
 .navbar {
   margin: 0;
   border: 0;
@@ -170,6 +175,7 @@ a.show-sidebar:hover {
   line-height: 50px;
   height: 50px;
   background: #ebebeb;
+  background-image:url(../images/pattern_b10.png);
 }
 #main {
   margin-top: 50px;
@@ -264,7 +270,7 @@ a.show-sidebar:hover {
   margin-top: 3px;
   padding: 3px 6px;
   vertical-align: top;
-  background: #CEA9A9;
+  background: #C00;
 }
 .avatar {
   width: 40px;
