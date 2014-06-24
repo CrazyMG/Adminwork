@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $app->get('/users/', function () use($app){
 	$app->applyHook('hook.auth', "/users/");
 	$app->render('users.twig', array(

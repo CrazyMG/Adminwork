@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 $app->get('/login/', function () use($app){
 	$app->render('login.twig', array(
 			'app' => $app
