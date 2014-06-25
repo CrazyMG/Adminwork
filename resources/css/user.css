@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+
+#btn_newUser{
+	margin:0 !important;
+	vertical-align:inherit !important;}
+	
+#datatable-1 button{
+	background: none;
+	border: none;
+	left: 11px;
+    position: relative;
+    font-size: 20px;
+}
+
+#datatable-1 .fa-pencil{
+	color:#096;	
+}
+
+#datatable-1 .fa-times{
+	color:#C90000;	
+}

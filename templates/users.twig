@@ -6,22 +6,62 @@
 {% endblock %}
 {% block style %}
 	<link rel="stylesheet" type="text/css" href="./../resources/css/bootstrapValidator.css"/>
+	<link rel="stylesheet" type="text/css" href="../resources/css/user.css"/>
 {% endblock %}
 
 {% block subtitle %}- Users{% endblock %}
 
 {% block content %}
-	<div>
-		<button id="btn_newUser">New User</button>
-	</div>
-	
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-user"></i>
+					<span>Users</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content no-padding">
+		<div class="box-content" style="display: block;">
+			<div class="col-sm-6">
+				<div id="datatable-1_filter" class="dataTables_filter">
+					<label>
+                    	<button id="btn_newUser" class="btn btn-success">New User</button>
+					</label>
+                    <label>
+						<input type="text" aria-controls="datatable-1" placeholder="Search">
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-6 text-right">
+				<div id="datatable-1_length" class="dataTables_length">
+					<label>
+						<select class="select2-offscreen" name="datatable-1_length" size="1" aria-controls="datatable-1" tabindex="-1">
+							<option value="10" selected="selected">10</option>
+							<option value="25">25</option>
+							<option value="50">50</option>
+							<option value="100">100</option>
+						</select>
+					</label>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
 	{% if users %}
-		<table border="1px">
+		<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
-					<th>Surname</th>
 					<th>Email</th>
 					<th>Role</th>
 					<th>Active</th>
@@ -30,20 +70,56 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for user in users %}
-					<tr id="row_{{ loop.index0 }}">
-						<td id="col_userId_{{ loop.index0 }}">{{ user.userId }}</td>
-						<td id="col_name_{{ loop.index0 }}">{{ user.name }}</td>
-						<td id="col_surname_{{ loop.index0 }}">{{ user.surname }}</td>
-						<td id="col_email_{{ loop.index0 }}">{{ user.email }}</td>
-						<td id="col_role_{{ loop.index0 }}">{{ user.role }}</td>
-						<td id="col_isActive_{{ loop.index0 }}">{{ user.isActive }}</td>
-						<td><button>Edit</button></td>
-						<td><button>Remove</button></td>
-					</tr>
-				{% endfor %}
+			{% for user in users %}
+				<tr id="row_{{ loop.index0 }}">
+					<td id="col_userId_{{ loop.index0 }}">{{ user.userId }}</td>
+					<td id="col_name_{{ loop.index0 }}"><img class="img-rounded" src="http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg" alt="">&nbsp;{{ user.name }}&nbsp;{{ user.surname }}</td>
+					<td id="col_email_{{ loop.index0 }}">{{ user.email }}</td>
+					<td id="col_role_{{ loop.index0 }}">{{ user.role }}</td>
+					<td id="col_isActive_{{ loop.index0 }}">{{ user.isActive }}</td>
+					<td><button class="fa fa-pencil"></button></td>
+					<td><button class="fa fa-times"></button></td>
+				</tr>
+			{% endfor %}
 			</tbody>
 		</table>
+        <div class="box-content" style="display: block;">
+			<div class="col-sm-6">
+				<div id="datatable-1_info" class="dataTables_info">Showing 1 to 10 of 100 entries</div>
+			</div>
+			<div class="col-sm-6 text-right">
+				<div class="dataTables_paginate paging_bootstrap">
+					<ul class="pagination">
+                    	<li class="prev disabled">
+                    		<a href="#">Previous</a>
+                    	</li>
+                    	<li class="active">
+                    		<a href="#">1</a>
+                    	</li>
+                    	<li>
+                    		<a href="#">2</a>
+                    	</li>
+                    	<li>
+                    		<a href="#">3</a>
+                    	</li>
+                    	<li>
+                    		<a href="#">4</a>
+                    	</li>
+                    	<li>
+                    		<a href="#">5</a>
+                    	</li>
+                    	<li class="next">
+                    		<a href="#">Next → </a>
+                    	</li>
+                    </ul>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		</div>
+		</div>
+	</div>
+</div>
 	{% else %}
 		No user found.
 	{% endif %}
