@@ -490,6 +490,10 @@ button.ui-button::-moz-focus-inner {
 	margin: -10px 0 0 0;
 	padding: 1px;
 	height: 20px;
+	background-image:url(../images/1403724455_cross-24.png);
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-size:cover;
 }
 .ui-dialog .ui-dialog-content {
 	position: relative;
