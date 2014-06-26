@@ -8,10 +8,19 @@ $app->get('/', function () use($app){
 	));
 })->name("HomePage");
 
+$app->get('/error404', function () use($app){
+	$app->applyHook('hook.auth', "/error404");
+	$app->render('error404.twig', array(
+			'app' => $app
+	));
+})->name("Error404");
+
  require './src/api/api.php';
  
  require './src/controller/loginRoutes.php';
  
  require './src/controller/logoutRoutes.php';
+ 
+ require './src/controller/clientsRoutes.php';
  
  require './src/controller/usersRoutes.php';

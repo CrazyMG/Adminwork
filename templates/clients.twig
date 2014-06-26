@@ -1,0 +1,111 @@
+{% extends 'base.twig' %}
+
+{% block script %}	
+	<script type="text/javascript" src="./../resources/js/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="./../resources/js/clients.js"></script>
+{% endblock %}
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="./../resources/css/bootstrapValidator.css"/>
+	<link rel="stylesheet" type="text/css" href="../resources/css/clients.css"/>
+{% endblock %}
+
+{% block subtitle %}- Users{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-user"></i>
+					<span>Clients</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content no-padding">
+		<div class="box-content" style="display: block;">
+			<div class="col-sm-6">
+				<div id="datatable-1_filter" class="dataTables_filter">
+					<button id="btn_newClient" class="fa fa-plus-circle"></button>
+{#                  <button id="btn_newClient" class="btn btn-success">New Clients</button>#}
+				</div>
+			</div>
+			<div class="col-sm-6 text-right">
+				<div id="datatable-1_length" class="dataTables_length">
+					<label>
+						<input id="scorserch" type="text" aria-controls="datatable-1" placeholder="Search">
+					</label>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	{% if clients %}
+		<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Organization</th>
+					<th>Description</th>
+					<th>Website</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for client in clients %}
+				<tr id="row_{{ loop.index0 }}">
+					<td id="col_clientId_{{ loop.index0 }}">{{ client.clientId }}</td>
+					<td id="col_description_{{ loop.index0 }}"><a href="{{ app.urlFor("ClientProfile", {'id': client.clientId}) }}">{{ client.organization }}</a></td>
+					<td id="col_description_{{ loop.index0 }}">{{ client.description }}</td>
+					<td id="col_website_{{ loop.index0 }}"><a href="{{ client.website }}">{{ client.website }}</a></td>
+					<td><button class="fa fa-pencil"></button></td>
+					<td><button class="fa fa-times"></button></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+	{% else %}
+		No client found.
+	{% endif %}
+	
+<div id="newClient_dialog" style="display: none;" >
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-lg-5 control-label">Organization Name:</label>
+			<div class="col-lg-6">
+				<input type="text" class="form-control" id="txb_name" name="name" placeholder="Organization name"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-lg-5 control-label">Description:</label>
+			<div class="col-lg-6">
+				<textarea class="form-control" id="tarea_description" name="description" placeholder="Description"></textarea>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-lg-5 control-label">Website:</label>
+			<div class="col-md-6">
+				<input type="url" class="form-control" id="txb_website" name="website" placeholder="Website"/>
+			</div>
+		</div>
+		
+		<div>
+			<button style="margin-left: 35.5%;" type="submit" class="btn btn-primary ">Create Client</button>
+			<button type="reset" class="btn btn-danger">Reset</button>
+		</div>
+	</form>
+</div>
+
+{% endblock %}

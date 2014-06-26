@@ -66,7 +66,7 @@ $app->hook('hook.auth', function ($pathTo) use ($app){
 
 
 $app->notFound(function () use ($app) {
-	$app->render('error404.twig');
+	$app->redirect($app->urlFor("Error404"));
 });
 
 require_once 'src/createDatabase.php';

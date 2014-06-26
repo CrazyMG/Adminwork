@@ -256,6 +256,16 @@
 						 <span class="hidden-xs">Users</span>
 					</a>
 				</li>
+				<li>
+					{% if routeName ==  'clients' %}
+					 <a class="active-parent active" href="{{ app.urlFor("Clients")}}">
+					{% else %}
+					<a  href="{{ app.urlFor("Clients")}}">
+					{% endif %}
+						 <i class="fa fa-user"></i>
+						 <span class="hidden-xs">Clients</span>
+					</a>
+				</li>
 				 <li>
 					<a class="ajax-link" href="#">
 						 <i class="fa fa-calendar"></i>

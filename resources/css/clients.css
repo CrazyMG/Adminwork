@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+#datatable-1 button{
+	background: none;
+	border: none;
+	left: 11px;
+    position: relative;
+    font-size: 20px;
+}
+
+#datatable-1 .fa-pencil{
+	color:#096;	
+}
+
+#datatable-1 .fa-times{
+	color:#C90000;	
+}
+
+#datatable-1_filter button{
+	color: #096;
+	background: none;
+	border: none;
+	left: 11px;
+    position: relative;
+    font-size: 40px;
+}
+
+#scorserch{
+	margin-right: 20px;
+}
