@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Clients' => $baseDir . '/src/models/client.php',
+    'Contacts' => $baseDir . '/src/models/contact.php',
     'IdiormResultSet' => $vendorDir . '/j4mie/idiorm/idiorm.php',
     'IdiormString' => $vendorDir . '/j4mie/idiorm/idiorm.php',
     'IdiormStringException' => $vendorDir . '/j4mie/idiorm/idiorm.php',

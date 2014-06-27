@@ -45,7 +45,7 @@ create table if not exists posts(
 );
 		
 /**
- * Create Absences table
+ * Create Absences table /////////////////////////////////////////////////////////////////////////////////
  */
 
 /**
@@ -54,14 +54,13 @@ create table if not exists posts(
 create table if not exists contacts(
 	contactId integer primary key auto_increment,
 	referent varchar(50) not null,
-	telephone varchar(50),
+	email varchar(50),
+	phone varchar(50),
 	fax varchar(50),
-	city varchar(50),
-	province varchar(50),
-	region varchar(50),
-	state varchar(50),
-	country varchar(50),
-	address varchar(255),
+	address varchar(100),
+	latitude varchar(30),
+	longitude varchar(30),
+	isMain boolean,
 	clientId integer,
 	userId integer,
 	FOREIGN KEY (clientId) REFERENCES clients(clientId)

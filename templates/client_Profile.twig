@@ -1,30 +1,65 @@
 {% extends 'base.twig' %}
 
 {% block script %}
-{# 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN426l3YE8LNpIgxU8wIn7W98gWZkUrwg&v=3.exp&libraries=places"></script>#}
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN426l3YE8LNpIgxU8wIn7W98gWZkUrwg&sensor=false&libraries=places"></script>
+	<script type="text/javascript" src="./../resources/js/bootstrapValidator.min.js"></script>
 	<script type="text/javascript" src="./../resources/js/client.js"></script>
 {% endblock %}
 
 {% block style %}
+	<link rel="stylesheet" type="text/css" href="./../resources/css/bootstrapValidator.css"/>
 	<script type="text/javascript" src="./../resources/css/client.css"></script>
 {% endblock %}
 
 {% block subtitle %}- {{client.organization}}{% endblock %}
 
 {% block content %}
-	<h1><i></i>#{{client.clientId}}</i></h1>
-	<h1>{{client.organization}}</h1>
-	<h1>{{client.description}}</h1>
+
+<!-- NON TOCCARMI L'ID "clientId" e il contenuto DI QUESTO SPAN, QUANDO POI FINISCI DI SISTEMARE LA PAGINA CANCELLA QUESTO COMMENTO -->
+	<span id="clientId" style="display: none;">
+		{{client.clientId}}
+	</span>
 	
+	<h4>{{client.organization}}</h4>
+	<h4>{{client.description}}</h4>
+	<h4><a href="{{client.website}}">Web site</a></h4>
 	<button id="btn_addContact">Add contact</button>
+	
+{% if main_contact %}
+	<h1>MAIN CONTACT</h1>
+	{{ main_contact.referent }}
+{% endif %}
+
+{% if contacts %}
+<hr>
+<h1><u>CONTACTS:</u></h1>
+<table>
+{% for contact in contacts %}
+	<tr>
+		<td>{{ contact.referent }}</td>
+	</tr>
+{% endfor %}
+</table>
+{% endif %}
+	
+	
+	
+	
+	
 	
 	<div id="newContact_dialog" style="display: none;" >
 	<form class="form-horizontal">
 		<div class="form-group">
-			<label class="col-lg-5 control-label">Referent Name:</label>
+			<label class="col-lg-5 control-label">Referent:</label>
 			<div class="col-lg-6">
 				<input type="text" class="form-control" id="txb_referent" name="referent" placeholder="Referent name"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-lg-5 control-label">Email:</label>
+			<div class="col-lg-6">
+				<input type="text" class="form-control" id="txb_email" name="email" placeholder="Email"></textarea>
 			</div>
 		</div>
 		
@@ -50,7 +85,7 @@
 		</div>
 		
 		<div>
-			<button style="margin-left: 35.5%;" type="submit" class="btn btn-primary ">Create Client</button>
+			<button style="margin-left: 35.5%;" type="submit" class="btn btn-primary ">Create Contact</button>
 			<button type="reset" class="btn btn-danger">Reset</button>
 		</div>
 	</form>
