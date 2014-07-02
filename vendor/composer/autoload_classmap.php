@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Assignments' => $baseDir . '/src/models/assignment.php',
     'Clients' => $baseDir . '/src/models/client.php',
     'Contacts' => $baseDir . '/src/models/contact.php',
     'IdiormResultSet' => $vendorDir . '/j4mie/idiorm/idiorm.php',
@@ -14,6 +15,7 @@ return array(
     'Model' => $vendorDir . '/j4mie/paris/paris.php',
     'ORM' => $vendorDir . '/j4mie/idiorm/idiorm.php',
     'ORMWrapper' => $vendorDir . '/j4mie/paris/paris.php',
+    'Projects' => $baseDir . '/src/models/project.php',
     'QueryReader' => $baseDir . '/src/lib/QueryReader.php',
     'Users' => $baseDir . '/src/models/user.php',
 );

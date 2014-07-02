@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+#usersAvailable, #userAssigned {
+    border: 1px solid #096;
+    width: 142px;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    float: left;
+    margin-right: 10px;
+  }
+  
+  #usersAvailable li, #userAssigned li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 15px;
+    width: 120px;
+  }

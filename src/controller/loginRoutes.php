@@ -33,11 +33,9 @@ $app->post('/login/check/', function() use($app){
 		$_SESSION['userLastname'] = $resp->surname;
 		$_SESSION['userThumbnail'] = $resp->thumbnail;
 		
-		var_dump($_SESSION);
 		if(!array_key_exists('pathTo', $_SESSION)){
 			$_SESSION['pathTo'] = "/";
 		}
-		var_dump($_SESSION);
 		$app->redirect($_SESSION['pathTo']);
 	}
 })->name("CheckLogin");

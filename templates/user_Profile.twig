@@ -1,0 +1,28 @@
+{% extends 'base.twig' %}
+
+{% block script %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN426l3YE8LNpIgxU8wIn7W98gWZkUrwg&sensor=false&libraries=places"></script>
+	<script type="text/javascript" src="./../resources/js/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="./../resources/js/client.js"></script>
+{% endblock %}
+
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="./../resources/css/bootstrapValidator.css"/>
+	<script type="text/javascript" src="./../resources/css/client.css"></script>
+{% endblock %}
+
+{% block subtitle %}- {{user.name}} {{user.surname}}{% endblock %}
+
+{% block content %}
+	#{{ user.userId }}<br />
+	{{ user.name }} {{ user.surname }}
+	<img src="http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg"/>
+	<hr>
+	{% if contact %}
+	Contact:<br />
+	{{ contact.email }}
+	{{ contact.phone }}
+	{{ contact.fax }}
+	{% endif %}
+	
+{% endblock %}

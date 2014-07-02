@@ -9,7 +9,6 @@ $app->get('/', function () use($app){
 })->name("HomePage");
 
 $app->get('/error404', function () use($app){
-	$app->applyHook('hook.auth', "/error404");
 	$app->render('error404.twig', array(
 			'app' => $app
 	));
@@ -24,3 +23,5 @@ $app->get('/error404', function () use($app){
  require './src/controller/clientsRoutes.php';
  
  require './src/controller/usersRoutes.php';
+ 
+ require './src/controller/projectsRoutes.php';

@@ -73,7 +73,7 @@
 			{% for user in users %}
 				<tr id="row_{{ loop.index0 }}">
 					<td id="col_userId_{{ loop.index0 }}">{{ user.userId }}</td>
-					<td id="col_name_{{ loop.index0 }}"><img class="img-rounded" src="http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg" alt="">&nbsp;{{ user.name }}&nbsp;{{ user.surname }}</td>
+					<td id="col_name_{{ loop.index0 }}"><a href="{{ app.urlFor("UserProfile", {'id': user.userId}) }}"><img class="img-rounded" src="http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg" alt="">&nbsp;{{ user.name }}&nbsp;{{ user.surname }}</a></td>
 					<td id="col_email_{{ loop.index0 }}">{{ user.email }}</td>
 					<td id="col_role_{{ loop.index0 }}">{{ user.role }}</td>
 					<td id="col_isActive_{{ loop.index0 }}">{{ user.isActive }}</td>

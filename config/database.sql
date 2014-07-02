@@ -84,8 +84,12 @@ create table if not exists projects(
 	url varchar(255),
 	note varchar(255),
 	clientId integer not null,
+	projectLeaderId integer not null,
 	FOREIGN KEY (clientId) REFERENCES clients(clientId)
 		ON DELETE NO ACTION /* 'No action' is a choice made to preserve data, you can think to set it 'CASCADE' */
+		ON UPDATE NO ACTION,
+	FOREIGN KEY (projectLeaderId) REFERENCES users(userId)
+		ON DELETE NO ACTION 
 		ON UPDATE NO ACTION
 );
 
@@ -128,7 +132,6 @@ create table if not exists assignments(
 	userId integer not null,
 	projectId integer not null,
 	rate double not null,
-	isLeader boolean not null default false,
 	FOREIGN KEY (userId) REFERENCES users(userId)
 		ON DELETE NO ACTION 
 		ON UPDATE NO ACTION,
@@ -136,4 +139,3 @@ create table if not exists assignments(
 		ON DELETE CASCADE 
 		ON UPDATE NO ACTION
 )
-

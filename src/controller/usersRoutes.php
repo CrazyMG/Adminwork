@@ -25,14 +25,18 @@ $app->post('/users/add/', function () use($app){
 		
 	$body = $response->body;
 	$resp = json_decode($body);
-	
-// 	if(property_exists($resp, "errore")){
-// 		$app->render('errore.twig', array(
-// 			'app' => $app,
-// 			'errore' => $resp->errore
-// 		));
-// 	}
-// 	else if(property_exists($resp, "successo")){
-// 		$app->redirect($app->urlFor("Clienti"));
-// 	}
 })->name("AddUserPost");
+
+$app->get('/users/:id', function ($id) use($app){
+	$user = Model::factory('Users')->find_one($id);
+	$contact = Model::factory('Contacts')->where('userId', $id)->findOne();
+
+	if (! $user instanceof Users) {
+		$app->redirect($app->urlFor("Error404"));
+	}
+	$app->render('user_Profile.twig', array(
+			'app' => $app,
+			'user' => $user,
+			'contact' => $contact
+	));
+})->name("UserProfile");

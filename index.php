@@ -40,8 +40,6 @@ ORM::configure('logging', true);
 
 try{
 	$db = ORM::get_db();
-	
-
 }catch(Exception $e){
 	echo $e->getMessage();
 }
@@ -65,9 +63,9 @@ $app->hook('hook.auth', function ($pathTo) use ($app){
 });
 
 
-$app->notFound(function () use ($app) {
-	$app->redirect($app->urlFor("Error404"));
-});
+ $app->notFound(function () use ($app) {
+  	$app->render('error404.twig');
+  });
 
 require_once 'src/createDatabase.php';
 require 'src/controller/router.php';

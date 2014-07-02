@@ -8,13 +8,13 @@
 
 {% block style %}
 	<link rel="stylesheet" type="text/css" href="./../resources/css/bootstrapValidator.css"/>
-	<script type="text/javascript" src="./../resources/css/client.css"></script>
+	<link rel="stylesheet" type="text/css" href="./../resources/css/client.css" />
 {% endblock %}
 
 {% block subtitle %}- {{client.organization}}{% endblock %}
 
 {% block content %}
-
+{{ error }}
 <!-- NON TOCCARMI L'ID "clientId" e il contenuto DI QUESTO SPAN, QUANDO POI FINISCI DI SISTEMARE LA PAGINA CANCELLA QUESTO COMMENTO -->
 	<span id="clientId" style="display: none;">
 		{{client.clientId}}
@@ -27,25 +27,134 @@
 	
 {% if main_contact %}
 	<h1>MAIN CONTACT</h1>
-	{{ main_contact.referent }}
+	<td>{{ main_contact.referent }}</td>
+	<td>{{ contact.phone }}</td>
+	<td>{{ contact.fax }}</td>
+	<td>{{ contact.address }}</td>
 {% endif %}
-
+<input id="latitude" type="hidden" value="{{ main_contact.latitude }}">
+<input id="longitude" type="hidden" value="{{ main_contact.longitude }}">
+<div id="map-canvas" style="width: 400px; height: 325px;"></div>
 {% if contacts %}
 <hr>
 <h1><u>CONTACTS:</u></h1>
-<table>
+<table class="table">
+<th>Referent</th>
+<th>Phone</th>
+<th>Fax</th>
+<th>Address</th>
 {% for contact in contacts %}
 	<tr>
 		<td>{{ contact.referent }}</td>
+		<td>{{ contact.phone }}</td>
+		<td>{{ contact.fax }}</td>
+		<td>{{ contact.address }}</td>
 	</tr>
 {% endfor %}
 </table>
 {% endif %}
-	
-	
-	
-	
-	
+
+<button id="btn_addProject">Add Project</button>
+
+<div id="accordion">
+{% if projects%}
+{% for project in projects %}
+  <h3>{{ project.title }}</h3>
+  <div>
+    <p>
+    {% if project.description %}
+    <b>Description:</b>
+		{{ project.description }} <br/> {% endif %}{% if project.startDate %}
+	<b>Start date:</b>
+		{{ project.startDate }} <br />{% endif %}{% if project.endDate is not defined %}
+	<b>End date:</b>
+		{{ project.endDate }} <br />{% endif %}{% if project.status %}
+	<b>Status:</b>
+		{{ project.status }} <br />{% endif %}{% if project.url %}
+	<b>URL:</b>
+		{{ project.url }} <br />{% endif %}{% if project.note %}
+	<b>Note:</b>
+		{{ project.note }} <br />{% endif %}
+    </p>
+  </div>
+{% endfor %}
+{% endif %}
+</div>
+
+	<div id="newProject_dialog" style="display: none;" >
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-lg-5 control-label">Project name:</label>
+				<div class="col-lg-6">
+					<input type="text" class="form-control" id="project_name" name="project_name" placeholder="Project name"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-lg-5 control-label">Description:</label>
+				<div class="col-lg-6">
+					<textarea type="text" class="form-control" id="project_description" name="project_description" placeholder="Description"></textarea>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-lg-5 control-label">Start date:</label>
+				<div class="col-lg-6">
+					<input type="text" class="form-control" id="project_startDate" name="project_startDate" placeholder="Start date"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-lg-5 control-label">End date:</label>
+				<div class="col-lg-6">
+					<input type="text" class="form-control" id="project_endDate" name="project_endDate" placeholder="End date"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-lg-5 control-label">URL:</label>
+				<div class="col-lg-6">
+					<input type="text" class="form-control" id="project_url" name="project_url" placeholder="URL"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-lg-5 control-label">Note:</label>
+				<div class="col-lg-6">
+					<textarea type="text" class="form-control" id="project_note" name="project_note" placeholder="Note"></textarea>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-lg-5 control-label">Project Leader:</label>
+				<div class="col-lg-6">
+					<select class="form-control" id="project_leader" name="project_leader">
+						{% for user in users %}
+						<option value="{{ user.userId }}">{{ user.name }} {{ user.surname }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-lg-5 control-label">Users available:</label>
+				<ul id="usersAvailable" class="connectedSortable">
+				{% for user in users %}
+	 				<li class="ui-state-default" rel="{{ user.userId }}">{{ user.name }} {{ user.surname }}</li>
+ 				{% endfor %}
+				</ul>
+			</div>
+			<div>
+				<label class="col-lg-5 control-label">Users assigned:</label>
+				<ul id="userAssigned" class="connectedSortable"></ul>
+			</div>
+			
+			<div>
+			<button style="margin-left: 35.5%;" type="submit" class="btn btn-primary ">Create Project</button>
+			<button type="reset" class="btn btn-danger">Reset</button>
+		</div>
+		</form>
+	</div>
 	
 	<div id="newContact_dialog" style="display: none;" >
 	<form class="form-horizontal">
@@ -59,14 +168,14 @@
 		<div class="form-group">
 			<label class="col-lg-5 control-label">Email:</label>
 			<div class="col-lg-6">
-				<input type="text" class="form-control" id="txb_email" name="email" placeholder="Email"></textarea>
+				<input type="text" class="form-control" id="txb_email" name="email" placeholder="Email" />
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label class="col-lg-5 control-label">Phone:</label>
 			<div class="col-lg-6">
-				<input type="text" class="form-control" id="txb_phone" name="phone" placeholder="Phone"></textarea>
+				<input type="text" class="form-control" id="txb_phone" name="phone" placeholder="Phone"/>
 			</div>
 		</div>
 		
